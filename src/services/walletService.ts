@@ -185,4 +185,30 @@ export class WalletService {
       return { eth: '0.0000', usdc: '0.00' };
     }
   }
+
+  /**
+   * Disconnects the browser wallet connection and cleans up local state
+   */
+  public static disconnectBrowserWallet(): void {
+    if (typeof window !== 'undefined') {
+      try {
+        localStorage.removeItem('keplerx_wallet_connected');
+      } catch (_) {}
+    }
+  }
+
+  /**
+   * Checks if an account is already authorized without triggering a popup
+   */
+  public static async getAuthorizedAccount(): Promise<Address | null> {
+    if (!this.hasInjectedWallet()) return null;
+    try {
+      const ethereum = (window as any).ethereum;
+      const accounts = await ethereum.request({ method: 'eth_accounts' });
+      return accounts && accounts.length > 0 ? (accounts[0] as Address) : null;
+    } catch (_) {
+      return null;
+    }
+  }
 }
+

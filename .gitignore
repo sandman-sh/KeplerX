@@ -35,3 +35,8 @@ build/
 *.sln
 *.sw?
 Thumbs.db
+
+# Submission & Local BUIDL Assets (NEVER commit to repo)
+buidl/
+*buidl*
+*submission*

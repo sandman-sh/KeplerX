@@ -40,7 +40,8 @@ import {
   Key,
   RotateCw,
   X,
-  BookOpen
+  BookOpen,
+  LogOut
 } from 'lucide-react';
 import type { Address } from 'viem';
 import { McpServerService, MCP_TOOLS, type McpSession } from '../services/mcpServerService';
@@ -127,17 +128,59 @@ export const DispatcherApp: React.FC = () => {
     return () => { isMounted = false; };
   }, [activeAddress, network]);
 
+  // Auto-reconnect and listen for Web3 account / chain changes
+  useEffect(() => {
+    if (localStorage.getItem('keplerx_wallet_connected') === 'true') {
+      WalletService.getAuthorizedAccount().then(addr => {
+        if (addr) {
+          setWalletAddress(addr);
+        }
+      });
+    }
+
+    if (typeof window !== 'undefined' && (window as any).ethereum) {
+      const handleAccounts = (accounts: string[]) => {
+        if (!accounts || accounts.length === 0) {
+          setWalletAddress(null);
+          setExecutionMode('agent');
+          WalletService.disconnectBrowserWallet();
+        } else {
+          setWalletAddress(accounts[0] as Address);
+        }
+      };
+
+      try {
+        (window as any).ethereum.on?.('accountsChanged', handleAccounts);
+      } catch (_) {}
+
+      return () => {
+        try {
+          (window as any).ethereum.removeListener?.('accountsChanged', handleAccounts);
+        } catch (_) {}
+      };
+    }
+  }, []);
+
   const handleConnectWallet = async () => {
     setIsConnectingWallet(true);
     try {
       const addr = await WalletService.connectBrowserWallet(network);
       setWalletAddress(addr);
       setExecutionMode('wallet');
+      try {
+        localStorage.setItem('keplerx_wallet_connected', 'true');
+      } catch (_) {}
     } catch (err: any) {
       alert(err.message || 'Failed to connect wallet');
     } finally {
       setIsConnectingWallet(false);
     }
+  };
+
+  const handleDisconnectWallet = () => {
+    WalletService.disconnectBrowserWallet();
+    setWalletAddress(null);
+    setExecutionMode('agent');
   };
 
   const handleClearAuditTrail = () => {
@@ -433,19 +476,30 @@ export const DispatcherApp: React.FC = () => {
               </button>
 
               {walletAddress ? (
-                <button
-                  type="button"
-                  onClick={() => setExecutionMode('wallet')}
-                  className={`h-full px-2.5 text-[11px] font-bold transition-all cursor-pointer flex items-center gap-1.5 whitespace-nowrap ${
-                    executionMode === 'wallet'
-                      ? 'bg-[#00FF4F]/15 text-[#00FF4F] border border-[#00FF4F]/40'
-                      : 'text-zinc-400 hover:text-white border border-transparent'
-                  }`}
-                  title={walletAddress}
-                >
-                  <Wallet className="w-3 h-3 text-[#00FF4F]" />
-                  <span>{walletAddress.slice(0, 6)}...{walletAddress.slice(-4)}</span>
-                </button>
+                <div className="flex items-center h-full">
+                  <button
+                    type="button"
+                    onClick={() => setExecutionMode('wallet')}
+                    className={`h-full px-2.5 text-[11px] font-bold transition-all cursor-pointer flex items-center gap-1.5 whitespace-nowrap ${
+                      executionMode === 'wallet'
+                        ? 'bg-[#00FF4F]/15 text-[#00FF4F] border border-[#00FF4F]/40'
+                        : 'text-zinc-400 hover:text-white border border-transparent'
+                    }`}
+                    title={`Connected: ${walletAddress} (Click to switch to Wallet mode)`}
+                  >
+                    <Wallet className="w-3 h-3 text-[#00FF4F]" />
+                    <span>{walletAddress.slice(0, 6)}...{walletAddress.slice(-4)}</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={handleDisconnectWallet}
+                    className="h-full px-2 text-[11px] text-zinc-500 hover:text-red-400 hover:bg-red-500/10 transition-colors flex items-center gap-1 cursor-pointer border-l border-white/10"
+                    title="Disconnect Web3 wallet"
+                  >
+                    <LogOut className="w-3 h-3 text-zinc-400 hover:text-red-400" />
+                    <span className="hidden xl:inline text-[10px]">Disconnect</span>
+                  </button>
+                </div>
               ) : (
                 <button
                   type="button"
@@ -592,9 +646,22 @@ export const DispatcherApp: React.FC = () => {
                   <Database className="w-3.5 h-3.5 text-[#00FF4F]" />
                   Active Signer &amp; Memory
                 </span>
-                <span className="text-[#00FF4F] text-[10px] flex items-center gap-1">
-                  <Check className="w-3 h-3" /> LIVE ON-CHAIN
-                </span>
+                <div className="flex items-center gap-2">
+                  {walletAddress && (
+                    <button
+                      type="button"
+                      onClick={handleDisconnectWallet}
+                      className="text-[10px] font-mono text-zinc-400 hover:text-red-400 flex items-center gap-1 px-1.5 py-0.5 border border-white/15 hover:border-red-400/40 hover:bg-red-500/10 transition-colors cursor-pointer"
+                      title="Disconnect browser Web3 wallet"
+                    >
+                      <LogOut className="w-2.5 h-2.5" />
+                      <span>Disconnect</span>
+                    </button>
+                  )}
+                  <span className="text-[#00FF4F] text-[10px] flex items-center gap-1">
+                    <Check className="w-3 h-3" /> LIVE ON-CHAIN
+                  </span>
+                </div>
               </div>
               <div className="space-y-2 text-zinc-400 text-[11px]">
                 <div>
