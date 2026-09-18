@@ -801,7 +801,7 @@ export const DispatcherApp: React.FC = () => {
                   <div className="flex items-center justify-between border-b border-white/10 pb-2">
                     <span className="font-mono text-xs uppercase text-zinc-200 font-bold flex items-center gap-2">
                       <ShieldCheck className={`w-4 h-4 ${simulation.success ? 'text-[#00FF4F]' : 'text-yellow-400'}`} />
-                      Stage 3: On-Chain Preflight Guard (Live Base RPC Dry-Run)
+                      Stage 3: On-Chain Preflight Verification (Live Base RPC Check)
                     </span>
                     <span className={`font-mono text-[10px] px-2 py-0.5 border ${
                       simulation.success 
@@ -913,11 +913,13 @@ export const DispatcherApp: React.FC = () => {
                       </div>
                     </div>
                   ) : (
-                    <div className="p-3 bg-black border border-white/10 font-mono text-xs">
-                      <span className="text-yellow-400 font-bold block mb-1">EXECUTION SAFELY ABORTED</span>
-                      <p className="text-zinc-400 text-xs">
-                        KeplerX's deterministic guard prevented this flawed call from being submitted to the mempool.
-                        Agent context was updated with the decoded revert explanation.
+                    <div className="p-3 bg-black border border-yellow-500/40 font-mono text-xs space-y-1.5">
+                      <span className="text-yellow-400 font-bold block flex items-center gap-1.5">
+                        <AlertTriangle className="w-3.5 h-3.5" />
+                        {executionRecord.errorReason ? 'ON-CHAIN BROADCAST REQUIREMENT' : 'EXECUTION SAFELY INTERCEPTED'}
+                      </span>
+                      <p className="text-zinc-300 text-xs leading-relaxed">
+                        {executionRecord.errorReason || "KeplerX's deterministic guard prevented this flawed call from being submitted to the mempool."}
                       </p>
                     </div>
                   )}

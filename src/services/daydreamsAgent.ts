@@ -99,7 +99,7 @@ export class DaydreamsAgentService {
       {
         step: 4,
         phase: 'EXECUTION_DISPATCH',
-        content: `Submitting verified x402 payment proof. Executing live on-chain EVM preflight simulation (eth_estimateGas & eth_call) on Base node before commit.`,
+        content: `Submitting verified x402 payment proof. Running live on-chain preflight verification on Base RPC node (eth_estimateGas & eth_call) before broadcast.`,
         timestamp
       },
       {
