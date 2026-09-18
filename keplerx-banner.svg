@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#050505"/>
+      <stop offset="50%" stop-color="#0a0f0d"/>
+      <stop offset="100%" stop-color="#020403"/>
+    </linearGradient>
+    <linearGradient id="glowGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00FF4F" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#00B838" stop-opacity="0.2"/>
+    </linearGradient>
+    <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00FF4F" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#00FF4F" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#00FF4F" stop-opacity="0"/>
+    </linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#ffffff" stroke-width="1" stroke-opacity="0.04"/>
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="400" fill="url(#bgGrad)"/>
+  <rect width="1200" height="400" fill="url(#grid)"/>
+
+  <!-- Subtle Radial Glow -->
+  <circle cx="600" cy="200" r="280" fill="#00FF4F" fill-opacity="0.05" filter="blur(60px)"/>
+
+  <!-- Border Lines -->
+  <line x1="0" y1="1" x2="1200" y2="1" stroke="url(#lineGrad)" stroke-width="2"/>
+  <line x1="0" y1="399" x2="1200" y2="399" stroke="url(#lineGrad)" stroke-width="2"/>
+
+  <!-- Protocol Badge -->
+  <g transform="translate(600, 75)">
+    <rect x="-170" y="-16" width="340" height="32" fill="#00FF4F" fill-opacity="0.08" stroke="#00FF4F" stroke-opacity="0.4" rx="4"/>
+    <circle cx="-148" cy="0" r="4" fill="#00FF4F"/>
+    <text x="-132" y="4" fill="#00FF4F" font-family="'JetBrains Mono', 'Fira Code', monospace" font-size="11" font-weight="700" letter-spacing="3">AUTONOMOUS EXECUTION · BASE EVM</text>
+  </g>
+
+  <!-- KeplerX Logo & Headline -->
+  <g transform="translate(600, 160)">
+    <text x="0" y="0" text-anchor="middle" fill="#FFFFFF" font-family="'JetBrains Mono', 'Inter', monospace" font-size="64" font-weight="800" letter-spacing="4">
+      KEPLER<tspan fill="#00FF4F">X</tspan>
+    </text>
+    <text x="0" y="45" text-anchor="middle" fill="#A1A1AA" font-family="'Inter', sans-serif" font-size="18" font-weight="400" letter-spacing="1.5">
+      Deterministic Execution &amp; x402 Micropayment Rails for AI Agents
+    </text>
+  </g>
+
+  <!-- Feature Pillars -->
+  <g transform="translate(240, 290)">
+    <rect x="-90" y="-20" width="180" height="42" fill="#111111" stroke="#27272A" rx="3"/>
+    <text x="0" y="6" text-anchor="middle" fill="#E4E4E7" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="600">Model Context Protocol</text>
+  </g>
+
+  <g transform="translate(480, 290)">
+    <rect x="-90" y="-20" width="180" height="42" fill="#111111" stroke="#27272A" rx="3"/>
+    <text x="0" y="6" text-anchor="middle" fill="#00FF4F" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="600">Zero-Revert Preflight</text>
+  </g>
+
+  <g transform="translate(720, 290)">
+    <rect x="-90" y="-20" width="180" height="42" fill="#111111" stroke="#27272A" rx="3"/>
+    <text x="0" y="6" text-anchor="middle" fill="#E4E4E7" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="600">HTTP 402 Settlement</text>
+  </g>
+
+  <g transform="translate(960, 290)">
+    <rect x="-90" y="-20" width="180" height="42" fill="#111111" stroke="#27272A" rx="3"/>
+    <text x="0" y="6" text-anchor="middle" fill="#00FF4F" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="600">MEV-Shielded Relayer</text>
+  </g>
+
+  <!-- Bottom Details -->
+  <text x="600" y="365" text-anchor="middle" fill="#71717A" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2">
+    CHAIN ID: 8453 (BASE MAINNET) · MULTI-TENANT ISOLATION · JSON-RPC 2.0
+  </text>
+</svg>
