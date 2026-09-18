@@ -176,7 +176,7 @@ export const DocsPage: React.FC = () => {
               <div className="flex items-center justify-between font-mono text-xs">
                 <span className="text-zinc-300 font-semibold">Claude Desktop Configuration (claude_desktop_config.json)</span>
                 <button
-                  onClick={() => copyToClipboard(`{\n  "mcpServers": {\n    "keplerx": {\n      "command": "npx",\n      "args": [\n        "-y",\n        "@modelcontextprotocol/server-fetch",\n        "http://localhost:3000/api/mcp?token=YOUR_SESSION_TOKEN"\n      ]\n    }\n  }\n}`, 'claude-cfg')}
+                  onClick={() => copyToClipboard(`{\n  "mcpServers": {\n    "keplerx": {\n      "command": "npx",\n      "args": [\n        "-y",\n        "@modelcontextprotocol/server-fetch",\n        "https://kepler-x.vercel.app/api/mcp?token=YOUR_SESSION_TOKEN"\n      ]\n    }\n  }\n}`, 'claude-cfg')}
                   className="text-zinc-400 hover:text-[#00FF4F] flex items-center gap-1 cursor-pointer"
                 >
                   {copiedId === 'claude-cfg' ? <Check className="w-3.5 h-3.5 text-[#00FF4F]" /> : <Copy className="w-3.5 h-3.5" />}
@@ -191,7 +191,7 @@ export const DocsPage: React.FC = () => {
       "args": [
         "-y",
         "@modelcontextprotocol/server-fetch",
-        "http://localhost:3000/api/mcp?token=YOUR_SESSION_TOKEN"
+        "https://kepler-x.vercel.app/api/mcp?token=YOUR_SESSION_TOKEN"
       ]
     }
   }
@@ -204,7 +204,7 @@ export const DocsPage: React.FC = () => {
               <div className="flex items-center justify-between font-mono text-xs">
                 <span className="text-zinc-300 font-semibold">Cursor IDE Configuration (.cursor/mcp.json)</span>
                 <button
-                  onClick={() => copyToClipboard(`{\n  "mcpServers": {\n    "keplerx": {\n      "url": "http://localhost:3000/api/mcp?token=YOUR_SESSION_TOKEN"\n    }\n  }\n}`, 'cursor-cfg')}
+                  onClick={() => copyToClipboard(`{\n  "mcpServers": {\n    "keplerx": {\n      "url": "https://kepler-x.vercel.app/api/mcp?token=YOUR_SESSION_TOKEN"\n    }\n  }\n}`, 'cursor-cfg')}
                   className="text-zinc-400 hover:text-[#00FF4F] flex items-center gap-1 cursor-pointer"
                 >
                   {copiedId === 'cursor-cfg' ? <Check className="w-3.5 h-3.5 text-[#00FF4F]" /> : <Copy className="w-3.5 h-3.5" />}
@@ -215,7 +215,7 @@ export const DocsPage: React.FC = () => {
 {`{
   "mcpServers": {
     "keplerx": {
-      "url": "http://localhost:3000/api/mcp?token=YOUR_SESSION_TOKEN"
+      "url": "https://kepler-x.vercel.app/api/mcp?token=YOUR_SESSION_TOKEN"
     }
   }
 }`}
@@ -227,7 +227,7 @@ export const DocsPage: React.FC = () => {
               <div className="flex items-center justify-between font-mono text-xs">
                 <span className="text-zinc-300 font-semibold">Python Agent / Requests Integration</span>
                 <button
-                  onClick={() => copyToClipboard(`import requests\n\nTOKEN = "YOUR_SESSION_TOKEN"\nMCP_URL = f"http://localhost:3000/api/mcp?token={TOKEN}"\n\n# Call telemetry\nres = requests.post(MCP_URL, json={\n    "jsonrpc": "2.0",\n    "id": 1,\n    "method": "tools/call",\n    "params": {\n        "name": "keplerx_get_telemetry",\n        "arguments": {"network": "8453"}\n    }\n})\nprint(res.json())`, 'py-cfg')}
+                  onClick={() => copyToClipboard(`import requests\n\nTOKEN = "YOUR_SESSION_TOKEN"\nMCP_URL = f"https://kepler-x.vercel.app/api/mcp?token={TOKEN}"\n\n# Call telemetry\nres = requests.post(MCP_URL, json={\n    "jsonrpc": "2.0",\n    "id": 1,\n    "method": "tools/call",\n    "params": {\n        "name": "keplerx_get_telemetry",\n        "arguments": {"network": "8453"}\n    }\n})\nprint(res.json())`, 'py-cfg')}
                   className="text-zinc-400 hover:text-[#00FF4F] flex items-center gap-1 cursor-pointer"
                 >
                   {copiedId === 'py-cfg' ? <Check className="w-3.5 h-3.5 text-[#00FF4F]" /> : <Copy className="w-3.5 h-3.5" />}
@@ -238,7 +238,7 @@ export const DocsPage: React.FC = () => {
 {`import requests
 
 TOKEN = "YOUR_SESSION_TOKEN"
-MCP_URL = f"http://localhost:3000/api/mcp?token={TOKEN}"
+MCP_URL = f"https://kepler-x.vercel.app/api/mcp?token={TOKEN}"
 
 # Call telemetry
 res = requests.post(MCP_URL, json={

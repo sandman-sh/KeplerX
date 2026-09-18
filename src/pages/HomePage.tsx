@@ -764,12 +764,10 @@ export const HomePage: React.FC = () => {
                 Connect your AI agent to the KeplerX MCP server or invoke the protocol directly:
               </p>
               <div className="p-4 bg-zinc-950 font-mono text-xs text-zinc-300 space-y-2 border border-white/5">
-                <div className="text-zinc-500"># Start local KeplerX MCP Gateway</div>
-                <div className="text-[#00FF4F]">npm run dev</div>
-                <div className="text-zinc-500 pt-2"># Connect Claude Desktop, Cursor, or AI agent</div>
-                <div className="text-white">claude mcp add --transport http keplerx http://localhost:3000/api/mcp?token=YOUR_TOKEN</div>
-                <div className="text-zinc-500 pt-2"># Preflight test with live RPC simulation</div>
-                <div className="text-[#00FF4F]">curl -X POST http://localhost:3000/api/mcp -d '&#123;"jsonrpc":"2.0","id":1,"method":"tools/call","params":&#123;"name":"keplerx_get_telemetry"&#125;&#125;'</div>
+                <div className="text-zinc-500"># Connect Claude Desktop, Cursor, or AI agent</div>
+                <div className="text-white">claude mcp add --transport http keplerx https://kepler-x.vercel.app/api/mcp?token=YOUR_TOKEN</div>
+                <div className="text-zinc-500 pt-2"># Live preflight test with live Base RPC</div>
+                <div className="text-[#00FF4F]">curl -X POST https://kepler-x.vercel.app/api/mcp -d '&#123;"jsonrpc":"2.0","id":1,"method":"tools/call","params":&#123;"name":"keplerx_get_telemetry"&#125;&#125;'</div>
               </div>
             </div>
           </div>

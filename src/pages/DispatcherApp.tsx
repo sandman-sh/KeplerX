@@ -1084,11 +1084,11 @@ export const DispatcherApp: React.FC = () => {
                     <span className="text-zinc-500 block text-[10px]">MCP ENDPOINT URL</span>
                     <div className="flex items-center gap-1 mt-1">
                       <code className="bg-zinc-900 px-2 py-1 border border-white/10 text-zinc-300 truncate flex-1 text-[11px]">
-                        {typeof window !== 'undefined' ? `${window.location.origin}/api/mcp` : 'http://localhost:3000/api/mcp'}
+                        {typeof window !== 'undefined' ? `${window.location.origin}/api/mcp` : 'https://kepler-x.vercel.app/api/mcp'}
                       </code>
                       <button
                         type="button"
-                        onClick={() => handleCopyText(typeof window !== 'undefined' ? `${window.location.origin}/api/mcp` : 'http://localhost:3000/api/mcp', 'ep-url')}
+                        onClick={() => handleCopyText(typeof window !== 'undefined' ? `${window.location.origin}/api/mcp` : 'https://kepler-x.vercel.app/api/mcp', 'ep-url')}
                         className="px-2 py-1 border border-white/10 hover:border-white/30 text-zinc-300 cursor-pointer"
                         title="Copy"
                       >
@@ -1190,7 +1190,7 @@ export const DispatcherApp: React.FC = () => {
                       onClick={() => handleCopyText(JSON.stringify({
                         mcpServers: {
                           keplerx: {
-                            url: `${typeof window !== 'undefined' ? window.location.origin : 'http://localhost:3000'}/api/mcp?token=${mcpSession.token}`,
+                            url: `${typeof window !== 'undefined' ? window.location.origin : 'https://kepler-x.vercel.app'}/api/mcp?token=${mcpSession.token}`,
                             headers: {
                               Authorization: `Bearer ${mcpSession.token}`
                             }
@@ -1206,7 +1206,7 @@ export const DispatcherApp: React.FC = () => {
 {JSON.stringify({
   mcpServers: {
     keplerx: {
-      url: `${typeof window !== 'undefined' ? window.location.origin : 'http://localhost:3000'}/api/mcp?token=${mcpSession.token}`,
+      url: `${typeof window !== 'undefined' ? window.location.origin : 'https://kepler-x.vercel.app'}/api/mcp?token=${mcpSession.token}`,
       headers: {
         Authorization: `Bearer ${mcpSession.token}`
       }
@@ -1233,7 +1233,7 @@ export const DispatcherApp: React.FC = () => {
                       onClick={() => handleCopyText(JSON.stringify({
                         mcpServers: {
                           "keplerx-base": {
-                            url: `${typeof window !== 'undefined' ? window.location.origin : 'http://localhost:3000'}/api/mcp?token=${mcpSession.token}`
+                            url: `${typeof window !== 'undefined' ? window.location.origin : 'https://kepler-x.vercel.app'}/api/mcp?token=${mcpSession.token}`
                           }
                         }
                       }, null, 2), 'cursor-cfg')}
@@ -1246,7 +1246,7 @@ export const DispatcherApp: React.FC = () => {
 {JSON.stringify({
   mcpServers: {
     "keplerx-base": {
-      url: `${typeof window !== 'undefined' ? window.location.origin : 'http://localhost:3000'}/api/mcp?token=${mcpSession.token}`
+      url: `${typeof window !== 'undefined' ? window.location.origin : 'https://kepler-x.vercel.app'}/api/mcp?token=${mcpSession.token}`
     }
   }
 }, null, 2)}
@@ -1266,7 +1266,7 @@ export const DispatcherApp: React.FC = () => {
                       type="button"
                       onClick={() => handleCopyText(`import httpx
 
-url = "${typeof window !== 'undefined' ? window.location.origin : 'http://localhost:3000'}/api/mcp"
+url = "${typeof window !== 'undefined' ? window.location.origin : 'https://kepler-x.vercel.app'}/api/mcp"
 headers = {"Authorization": "Bearer ${mcpSession.token}"}
 
 payload = {
@@ -1274,7 +1274,7 @@ payload = {
     "id": 1,
     "method": "tools/call",
     "params": {
-        "name": "keeperhub_preflight_simulate",
+        "name": "keplerx_preflight_simulate",
         "arguments": {
             "intent": "Swap 500 USDC for WETH on Aerodrome",
             "targetContract": "0xcF77a3Ba9A5CA399B7c97c74d54e5b1Beb874E43",
@@ -1294,7 +1294,7 @@ print(response.json())`, 'py-snippet')}
                     <pre className="text-[#00FF4F] overflow-x-auto text-[11px] leading-relaxed">
 {`import httpx
 
-url = "${typeof window !== 'undefined' ? window.location.origin : 'http://localhost:3000'}/api/mcp"
+url = "${typeof window !== 'undefined' ? window.location.origin : 'https://kepler-x.vercel.app'}/api/mcp"
 headers = {"Authorization": "Bearer ${mcpSession.token}"}
 
 payload = {
@@ -1302,7 +1302,7 @@ payload = {
     "id": 1,
     "method": "tools/call",
     "params": {
-        "name": "keeperhub_preflight_simulate",
+        "name": "keplerx_preflight_simulate",
         "arguments": {
             "intent": "Swap 500 USDC for WETH on Aerodrome",
             "targetContract": "0xcF77a3Ba9A5CA399B7c97c74d54e5b1Beb874E43",

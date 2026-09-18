@@ -7,6 +7,10 @@
 </p>
 
 <p align="center">
+  <a href="https://kepler-x.vercel.app"><strong>🌐 Live Production Deployment: https://kepler-x.vercel.app</strong></a>
+</p>
+
+<p align="center">
   <a href="https://base.org"><img src="https://img.shields.io/badge/Network-Base%20Mainnet%20(8453)-0052FF?style=flat-square" alt="Base Network" /></a>
   <a href="https://spec.modelcontextprotocol.io"><img src="https://img.shields.io/badge/MCP-JSON--RPC%202.0-00FF4F?style=flat-square&logoColor=black" alt="MCP Spec" /></a>
   <a href="https://www.typescriptlang.org"><img src="https://img.shields.io/badge/TypeScript-5.x-blue?style=flat-square" alt="TypeScript" /></a>
@@ -140,7 +144,7 @@ Add the following to your `claude_desktop_config.json`:
       "args": [
         "-y",
         "@modelcontextprotocol/server-fetch",
-        "http://localhost:3000/api/mcp?token=YOUR_SESSION_TOKEN"
+        "https://kepler-x.vercel.app/api/mcp?token=YOUR_SESSION_TOKEN"
       ]
     }
   }
@@ -153,7 +157,7 @@ Add to `.cursor/mcp.json`:
 {
   "mcpServers": {
     "keplerx": {
-      "url": "http://localhost:3000/api/mcp?token=YOUR_SESSION_TOKEN"
+      "url": "https://kepler-x.vercel.app/api/mcp?token=YOUR_SESSION_TOKEN"
     }
   }
 }
@@ -163,7 +167,7 @@ Add to `.cursor/mcp.json`:
 ```python
 import httpx
 
-url = "http://localhost:3000/api/mcp"
+url = "https://kepler-x.vercel.app/api/mcp"
 headers = {"Authorization": "Bearer YOUR_SESSION_TOKEN"}
 
 # Execute live on-chain preflight simulation
